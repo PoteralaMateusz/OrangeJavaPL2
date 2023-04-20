@@ -8,7 +8,6 @@ public class OrangeJavaPl2SpringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrangeJavaPl2SpringApplication.class, args);
-		//hello
 	}
 
 }
