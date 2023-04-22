@@ -29,4 +29,12 @@ public class AddressRepository {
         address.ifPresent(repository::delete);
     }
 
+    public void updateAddress(int id, Address address){
+        Optional<Address> toUpdate = repository.findById(id);
+        if(toUpdate.isPresent()){
+            address.setId(id);
+            repository.save(address);
+        }
+    }
+
 }

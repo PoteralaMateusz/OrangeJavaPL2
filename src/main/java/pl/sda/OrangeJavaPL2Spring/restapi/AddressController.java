@@ -31,4 +31,9 @@ public class AddressController {
     public void deleteAddress(@PathVariable int id){
         repository.deleteAddressByID(id);
     }
+
+    @PutMapping("/address/{id}")
+    public void updateAddress(@PathVariable int id, @RequestBody Address address){
+        repository.updateAddress(id,address);
+    }
 }
