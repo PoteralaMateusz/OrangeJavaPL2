@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
-import pl.sda.OrangeJavaPL2Spring.entity.BreadRepository;
+import pl.sda.OrangeJavaPL2Spring.repository.BreadRepository;
 
 @Component
 @RequiredArgsConstructor

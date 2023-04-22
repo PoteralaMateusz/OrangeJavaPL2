@@ -1,7 +1,8 @@
-package pl.sda.OrangeJavaPL2Spring.entity;
+package pl.sda.OrangeJavaPL2Spring.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import pl.sda.OrangeJavaPL2Spring.entity.Address;
 
 import java.util.List;
 import java.util.Optional;

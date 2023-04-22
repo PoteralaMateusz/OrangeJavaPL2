@@ -2,7 +2,7 @@ package pl.sda.OrangeJavaPL2Spring.restapi;
 
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
-import pl.sda.OrangeJavaPL2Spring.entity.BreadRepository;
+import pl.sda.OrangeJavaPL2Spring.repository.BreadRepository;
 
 import java.util.List;
 import java.util.Optional;

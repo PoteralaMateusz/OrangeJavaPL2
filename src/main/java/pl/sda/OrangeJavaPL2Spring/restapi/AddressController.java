@@ -3,7 +3,7 @@ package pl.sda.OrangeJavaPL2Spring.restapi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Address;
-import pl.sda.OrangeJavaPL2Spring.entity.AddressRepository;
+import pl.sda.OrangeJavaPL2Spring.repository.AddressRepository;
 
 import java.util.List;
 
