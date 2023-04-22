@@ -16,8 +16,13 @@ public class BreadController {
     }
 
     @GetMapping("/breads")
-    public  List<Bread> getBreads(){
+    public  List<Bread> getAllBreads(){
         return repository.getAllBreads();
+    }
+
+    @GetMapping("/bread/{id}")
+    public Bread getBreadByID(@PathVariable int id){
+        return repository.getBreadByID(id).orElse(null);
     }
 
     @GetMapping("/bread_by_price/{price}")

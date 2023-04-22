@@ -15,6 +15,14 @@ public class BreadRepository {
         return repository.findAll();
     }
 
+    public Optional<Bread> getBreadByID(int id){
+        return repository.findById(id);
+    }
+
+    public Optional<List<Bread>> getBreadsByPrice(double price){
+        return repository.getBreadsByPrice(price);
+    }
+
     public void addBread(Bread bread){
         repository.save(bread);
     }
@@ -25,9 +33,5 @@ public class BreadRepository {
 
     public void deleteBread(Bread bread){
         repository.delete(bread);
-    }
-
-    public Optional<List<Bread>> getBreadsByPrice(double price){
-        return repository.getBreadsByPrice(price);
     }
 }
