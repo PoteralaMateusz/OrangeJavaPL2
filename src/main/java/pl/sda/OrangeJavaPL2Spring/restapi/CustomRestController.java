@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Profile("dev")
-@RestController
+@RestController //definicja beana
 public class CustomRestController {
 
+
+    // @RequestMapping(method = RequestMethod.GET,path = "/hello")
+    // Adnotacja tak samo działa jak GetMapping
     @GetMapping(path = "/hello")
     public String helloDev(){
         return "hello Dev";
