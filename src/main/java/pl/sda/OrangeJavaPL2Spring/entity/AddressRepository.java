@@ -24,4 +24,9 @@ public class AddressRepository {
         repository.save(address);
     }
 
+    public void deleteAddressByID(int id){
+        Optional<Address> address = repository.findById(id);
+        address.ifPresent(repository::delete);
+    }
+
 }

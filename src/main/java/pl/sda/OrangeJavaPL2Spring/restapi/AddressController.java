@@ -1,10 +1,7 @@
 package pl.sda.OrangeJavaPL2Spring.restapi;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Address;
 import pl.sda.OrangeJavaPL2Spring.entity.AddressRepository;
 
@@ -20,8 +17,18 @@ public class AddressController {
         return repository.getAllAddresses();
     }
 
+    @GetMapping("/address/{id}")
+    public Address getAddressByID(@PathVariable int id){
+        return repository.getAddressByID(id).orElse(null);
+    }
+
     @PostMapping("/address")
     public void createAddress(@RequestBody Address address){
         repository.createAddress(address);
+    }
+
+    @DeleteMapping("/address/{id}")
+    public void deleteAddress(@PathVariable int id){
+        repository.deleteAddressByID(id);
     }
 }
