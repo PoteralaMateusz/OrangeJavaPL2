@@ -14,10 +14,14 @@ public class BreadInitializer {
     // wykonuje się gdy powstaje aplikacja
     @PostConstruct
     public void initBreads(){
-        Bread bagietka = new Bread(3,"Bagietka",3.5);
-        Bread grahamka = new Bread(4,"Bułka grahamka",1);
+        Bread bagietka = new Bread("Bagietka",3.5);
+        Bread bread1 = new Bread("Chleb działdowski",3.5);
+        Bread bread2 = new Bread("Chleb wieloziarnisty",4.59);
+        Bread grahamka = new Bread("Bułka grahamka",1);
 
         breadRepository.addBread(bagietka);
+        breadRepository.addBread(bread1);
         breadRepository.addBread(grahamka);
+        breadRepository.addBread(bread2);
     }
 }

@@ -3,7 +3,6 @@ package pl.sda.OrangeJavaPL2Spring.restapi;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
 import pl.sda.OrangeJavaPL2Spring.entity.BreadRepository;
-import pl.sda.OrangeJavaPL2Spring.entity.IBreadRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +21,8 @@ public class BreadController {
     }
 
     @GetMapping("/bread_by_price/{price}")
-    public Bread getBreadByPrice(@PathVariable double price){
-        Optional<Bread> breadByPrice = repository.getBreadByPrice(price);
+    public List<Bread> getBreadsByPrice(@PathVariable double price){
+        Optional<List<Bread>> breadByPrice = repository.getBreadsByPrice(price);
         return breadByPrice.orElse(null);
     }
 

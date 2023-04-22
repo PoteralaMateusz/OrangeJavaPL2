@@ -23,4 +23,8 @@ public class Bread {
     private String name;
     private double price;
 
+    public Bread(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
 }

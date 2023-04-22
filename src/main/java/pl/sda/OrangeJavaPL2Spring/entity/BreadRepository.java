@@ -27,7 +27,7 @@ public class BreadRepository {
         repository.delete(bread);
     }
 
-    public Optional<Bread> getBreadByPrice(double price){
-        return repository.getBreadByPrice(price);
+    public Optional<List<Bread>> getBreadsByPrice(double price){
+        return repository.getBreadsByPrice(price);
     }
 }
