@@ -18,28 +18,27 @@ public class BreadController {
     }
 
     @GetMapping("/breads")
-    public  List<Bread> getAllBreads(){
+    public  ResponseEntity<List<Bread>> getAllBreads(){
         return service.getAllBreads();
     }
 
     @GetMapping("/bread/{id}")
-    public Bread getBreadByID(@PathVariable int id){
-        return service.getBreadByID(id).orElse(null);
+    public ResponseEntity<Bread> getBreadByID(@PathVariable int id){
+        return service.getBreadByID(id);
     }
 
     @GetMapping("/bread_by_price/{price}")
-    public List<Bread> getBreadsByPrice(@PathVariable double price){
-        Optional<List<Bread>> breadByPrice = service.getBreadsByPrice(price);
-        return breadByPrice.orElse(null);
+    public ResponseEntity<List<Bread>> getBreadsByPrice(@PathVariable double price){
+        return service.getBreadsByPrice(price);
     }
 
     @PostMapping("/breads")
-    public ResponseEntity createBread(@RequestBody Bread bread){
+    public ResponseEntity<?> createBread(@RequestBody Bread bread){
         return service.addBread(bread);
     }
 
     @DeleteMapping("/breads/{id}")
-    public ResponseEntity deleteBread(@PathVariable int id){
+    public ResponseEntity<?> deleteBread(@PathVariable int id){
         return service.deleteBread(id);
     }
 

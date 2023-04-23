@@ -14,32 +14,33 @@ import java.util.Optional;
 public class BreadService {
     private final BreadRepository repository;
 
-    public List<Bread> getAllBreads(){
-        return repository.getAllBreads();
+    public ResponseEntity<List<Bread>> getAllBreads(){
+        return ResponseEntity.ok(repository.getAllBreads());
     }
 
-    public ResponseEntity addBread(Bread bread){
+    public ResponseEntity<?> addBread(Bread bread){
         if(bread == null){
             return ResponseEntity
                     .status(404)
                     .build();
         }
-
         repository.addBread(bread);
         return ResponseEntity
                 .status(201)
                 .build();
     }
 
-    public Optional<Bread> getBreadByID(int id){
-        return repository.getBreadByID(id);
+    public ResponseEntity<Bread> getBreadByID(int id){
+        Optional<Bread> bread = repository.getBreadByID(id);
+        return bread.isPresent() ? ResponseEntity.ok(bread.get()) : ResponseEntity.status(404).build();
     }
 
-    public Optional<List<Bread>> getBreadsByPrice(double price){
-        return repository.getBreadsByPrice(price);
+    public ResponseEntity<List<Bread>> getBreadsByPrice(double price){
+        Optional<List<Bread>> breads = repository.getBreadsByPrice(price);
+        return breads.isPresent() ? ResponseEntity.ok(breads.get()) : ResponseEntity.status(404).build();
     }
 
-    public ResponseEntity deleteBread(int id){
+    public ResponseEntity<?> deleteBread(int id){
         Optional<Bread> breadToDelete = repository.getBreadByID(id);
         breadToDelete.ifPresent(repository::deleteBread);
 
