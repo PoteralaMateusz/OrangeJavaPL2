@@ -3,6 +3,7 @@ package pl.sda.OrangeJavaPL2Spring.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
+import pl.sda.OrangeJavaPL2Spring.entity.BreadType;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,12 @@ public class BreadRepository {
         return repository.findBreadByName(name);
     }
 
+    public List<Bread> findBreadsByBreadType(BreadType breadType){
+        return repository.findBreadsByBreadType(breadType);
+    }
+
     public void deleteBread(Bread bread){
         repository.delete(bread);
     }
+
 }

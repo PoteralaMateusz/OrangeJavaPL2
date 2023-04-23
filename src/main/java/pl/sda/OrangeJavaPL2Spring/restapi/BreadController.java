@@ -32,6 +32,11 @@ public class BreadController {
         return service.getBreadsByPrice(price);
     }
 
+    @GetMapping("/breads/breads_by_bread_type/{breadType}")
+    public ResponseEntity<List<Bread>> getBreadsByBreadType(@PathVariable String breadType){
+        return service.getBreadsByBreadType(breadType);
+    }
+
     @PostMapping("/breads")
     public ResponseEntity<?> createBread(@RequestBody Bread bread){
         return service.addBread(bread);
