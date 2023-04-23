@@ -21,7 +21,7 @@ public class BreadRepository {
     }
 
     public Optional<List<Bread>> getBreadsByPrice(double price){
-        return repository.getBreadsByPrice(price);
+        return repository.findBreadsByPrice(price);
     }
 
     public void addBread(Bread bread){
@@ -30,6 +30,10 @@ public class BreadRepository {
 
     public Optional<Bread> findBreadById(int id){
         return repository.findById(id);
+    }
+
+    public Optional<Bread> findBreadByName(String name){
+        return repository.findBreadByName(name);
     }
 
     public void deleteBread(Bread bread){

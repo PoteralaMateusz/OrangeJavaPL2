@@ -9,5 +9,7 @@ import java.util.Optional;
 
 public interface IBreadRepository extends JpaRepository<Bread,Integer> {
 
-    Optional<List<Bread>> getBreadsByPrice(double price);
+    Optional<List<Bread>> findBreadsByPrice(double price);
+    Optional<Bread> findBreadByName(String name);
+
 }
