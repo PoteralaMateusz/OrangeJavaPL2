@@ -45,4 +45,11 @@ public class BreadRepository {
         repository.delete(bread);
     }
 
+    public void update(Bread toUpdate) {
+        repository.save(toUpdate);
+    }
+
+    public void updateBreadName(int id, String name) {
+        repository.updateBreadName(id,name);
+    }
 }

@@ -3,11 +3,9 @@ package pl.sda.OrangeJavaPL2Spring.restapi;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
-import pl.sda.OrangeJavaPL2Spring.repository.BreadRepository;
 import pl.sda.OrangeJavaPL2Spring.service.BreadService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class BreadController {
@@ -43,8 +41,18 @@ public class BreadController {
     }
 
     @DeleteMapping("/breads/{id}")
-    public ResponseEntity<?> deleteBread(@PathVariable int id){
-        return service.deleteBread(id);
+    public ResponseEntity<?> deleteBreadByID(@PathVariable int id){
+        return service.deleteBreadByID(id);
+    }
+
+    @PutMapping("/breads/{id}")
+    public ResponseEntity<?> updateBread(@PathVariable int id,@RequestBody Bread toUpdate){
+        return service.updateBread(id, toUpdate);
+    }
+
+    @PutMapping("/breads/name/{id}")
+    public void updateBreadName(@PathVariable int id,@RequestBody Bread toUpdate){
+        service.updateBreadName(id, toUpdate.getName());
     }
 
 }
