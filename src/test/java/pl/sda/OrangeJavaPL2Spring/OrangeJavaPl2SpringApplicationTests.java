@@ -23,4 +23,6 @@ class OrangeJavaPl2SpringApplicationTests {
 		System.out.println(bigDecimal2);
 	}
 
+	// List / ArrayList - List jest interfacem a ArrayList jest implementacją ArrayList
+
 }

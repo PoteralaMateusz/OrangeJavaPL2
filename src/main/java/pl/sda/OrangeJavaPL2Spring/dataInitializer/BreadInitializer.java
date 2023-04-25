@@ -17,10 +17,10 @@ public class BreadInitializer {
     // wykonuje się gdy powstaje aplikacja
     @PostConstruct
     public void initBreads(){
-        Bread bread = new Bread("Bułka", BreadType.ZYTNIE, BigDecimal.valueOf(3.5));
-        Bread bread1 = new Bread("Chleb działdowski", BreadType.PSZENNE,BigDecimal.valueOf(3.5));
-        Bread bread2 = new Bread("Chleb wieloziarnisty", BreadType.WIELOZIARNISTE,BigDecimal.valueOf(4.59));
-        Bread bread3 = new Bread("Drożdźówka", BreadType.SLODKIE,BigDecimal.valueOf(1));
+        Bread bread = new Bread("Bułka", BreadType.WHEAT, BigDecimal.valueOf(3.5));
+        Bread bread1 = new Bread("Chleb działdowski", BreadType.WHEAT,BigDecimal.valueOf(3.5));
+        Bread bread2 = new Bread("Chleb wieloziarnisty", BreadType.MULTIGRAIN,BigDecimal.valueOf(4.59));
+        Bread bread3 = new Bread("Drożdźówka", BreadType.SWEET,BigDecimal.valueOf(1));
 
         breadRepository.addBread(bread);
         breadRepository.addBread(bread1);
