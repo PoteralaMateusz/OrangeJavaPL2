@@ -51,8 +51,8 @@ public class BreadController {
     }
 
     @PutMapping("/breads/name/{id}")
-    public void updateBreadName(@PathVariable int id,@RequestBody Bread toUpdate){
-        service.updateBreadName(id, toUpdate.getName());
+    public ResponseEntity<?> updateBreadName(@PathVariable int id,@RequestBody Bread toUpdate){
+        return service.updateBreadName(id, toUpdate.getName());
     }
 
 }

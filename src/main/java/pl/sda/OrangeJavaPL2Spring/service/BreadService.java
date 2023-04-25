@@ -81,11 +81,20 @@ public class BreadService {
         toUpdate.setId(id);
         repository.update(toUpdate);
         return ResponseEntity
-                .status(201)
+                .status(202)
                 .build();
     }
 
-    public void updateBreadName(int id, String name) {
+    public ResponseEntity<?> updateBreadName(int id, String name) {
+        Optional<Bread> isExist = repository.getBreadByID(id);
+        if (isExist.isEmpty()) {
+            return ResponseEntity
+                    .status(404)
+                    .build();
+        }
         repository.updateBreadName(id, name);
+        return ResponseEntity
+                .status(202)
+                .build();
     }
 }
