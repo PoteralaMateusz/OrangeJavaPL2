@@ -19,7 +19,7 @@ class OrangeJavaPl2SpringApplicationTests {
 
 		System.out.println("-------------new-----------------");
 		System.out.println(bigDecimal);
-		System.out.println("-------------valueof-----------------");
+		System.out.println("-------------valueOf-----------------");
 		System.out.println(bigDecimal2);
 	}
 
