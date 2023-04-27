@@ -1,6 +1,7 @@
 package pl.sda.OrangeJavaPL2Spring.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.sda.OrangeJavaPL2Spring.entity.BreadType;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BreadService {
     private final BreadRepository repository;
 
@@ -21,12 +23,22 @@ public class BreadService {
 
     public ResponseEntity<Bread> getBreadByID(int id) {
         Optional<Bread> bread = repository.getBreadByID(id);
-        return bread.isPresent() ? ResponseEntity.ok(bread.get()) : ResponseEntity.status(404).build();
+        if (bread.isEmpty()) {
+            log.info("Cant get bread with " + id + ". This ID dont exist");
+            return ResponseEntity.status(404).build();
+        }
+        log.info("Showing bread with id: " + id);
+        return ResponseEntity.ok(bread.get());
     }
 
     public ResponseEntity<List<Bread>> getBreadsByPrice(double price) {
         Optional<List<Bread>> breads = repository.getBreadsByPrice(price);
-        return breads.isPresent() ? ResponseEntity.ok(breads.get()) : ResponseEntity.status(404).build();
+        if (breads.isEmpty()) {
+            log.info("Breads with price: " + price + " dont exist");
+            ResponseEntity.status(404).build();
+        }
+        log.info("Showing breads with price: " + price + " .");
+        return ResponseEntity.ok(breads.get());
     }
 
     public ResponseEntity<List<Bread>> getBreadsByBreadType(String type) {
@@ -34,10 +46,12 @@ public class BreadService {
         try {
             breadType = BreadType.valueOf(type.toUpperCase());
         } catch (IllegalArgumentException e) {
+            log.info("Getting BreadType dont exist");
             return ResponseEntity
                     .status(404)
                     .build();
         }
+        log.info("Showing bread by breadType: " + type);
         return ResponseEntity
                 .status(200).
                 body(repository.findBreadsByBreadType(breadType));
@@ -46,11 +60,13 @@ public class BreadService {
 
     public ResponseEntity<?> addBread(Bread bread) {
         if (bread == null) {
+            log.info("Cant add empty bread.");
             return ResponseEntity
                     .status(404)
                     .build();
         }
         repository.addBread(bread);
+        log.info("Adding bread: " + bread + " to db.");
         return ResponseEntity
                 .status(201)
                 .build();
@@ -60,26 +76,30 @@ public class BreadService {
         Optional<Bread> breadToDelete = repository.getBreadByID(id);
 
         if (breadToDelete.isEmpty()) {
+            log.info("Cant delete bread with id: " + id + " dont exist.");
             return ResponseEntity
                     .status(404)
                     .build();
         }
 
         breadToDelete.ifPresent(repository::deleteBread);
+        log.info("Delete successful bread with id: " + id);
         return ResponseEntity
-                .status(200)
+                .status(204)
                 .build();
     }
 
     public ResponseEntity<?> updateBread(int id, Bread toUpdate) {
         Optional<Bread> isExist = repository.getBreadByID(id);
         if (isExist.isEmpty()) {
+            log.info("Cant update bread with id: " + id + " dont exist.");
             return ResponseEntity
                     .status(404)
                     .build();
         }
         toUpdate.setId(id);
         repository.update(toUpdate);
+        log.info("Update successful bread with id: " + id);
         return ResponseEntity
                 .status(202)
                 .build();
@@ -88,11 +108,13 @@ public class BreadService {
     public ResponseEntity<?> updateBreadName(int id, String name) {
         Optional<Bread> isExist = repository.getBreadByID(id);
         if (isExist.isEmpty()) {
+            log.info("Cant update bread with id: " + id + " dont exist.");
             return ResponseEntity
                     .status(404)
                     .build();
         }
         repository.updateBreadName(id, name);
+        log.info("Update successful bread with id: " + id);
         return ResponseEntity
                 .status(202)
                 .build();
