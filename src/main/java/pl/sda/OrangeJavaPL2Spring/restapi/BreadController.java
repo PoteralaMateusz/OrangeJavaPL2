@@ -1,5 +1,6 @@
 package pl.sda.OrangeJavaPL2Spring.restapi;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
