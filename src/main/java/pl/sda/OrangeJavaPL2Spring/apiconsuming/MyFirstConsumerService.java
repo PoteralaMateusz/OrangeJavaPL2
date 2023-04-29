@@ -10,11 +10,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-@Service
+//@Service
 @Slf4j
 public class MyFirstConsumerService {
 
-    @PostConstruct
+    //@PostConstruct
     void callApi() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -22,6 +22,14 @@ public class MyFirstConsumerService {
                 .uri(URI.create("https://www.boredapi.com/api/activity"))
                 .build();
         HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+        log.info(response.toString());
+        log.info(response.body());
+
+        request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://official-joke-api.appspot.com/random_joke"))
+                .build();
+        response = client.send(request,HttpResponse.BodyHandlers.ofString());
         log.info(response.toString());
         log.info(response.body());
 

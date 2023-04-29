@@ -21,17 +21,17 @@ public class BreadController {
         return service.getAllBreads();
     }
 
-    @GetMapping("/bread/{id}")
+    @GetMapping("/breads/{id}")
     public ResponseEntity<Bread> getBreadByID(@PathVariable int id){
         return service.getBreadByID(id);
     }
 
-    @GetMapping("/bread_by_price/{price}")
+    @GetMapping("/breads/price/{price}")
     public ResponseEntity<List<Bread>> getBreadsByPrice(@PathVariable double price){
         return service.getBreadsByPrice(price);
     }
 
-    @GetMapping("/breads/breads_by_bread_type/{breadType}")
+    @GetMapping("/breads/breads/bread_type/{breadType}")
     public ResponseEntity<List<Bread>> getBreadsByBreadType(@PathVariable String breadType){
         return service.getBreadsByBreadType(breadType);
     }

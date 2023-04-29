@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.sda.OrangeJavaPL2Spring.entity.BreadType;
 import pl.sda.OrangeJavaPL2Spring.entity.Bread;
+import pl.sda.OrangeJavaPL2Spring.exceptions.BreadNotFoundException;
 import pl.sda.OrangeJavaPL2Spring.repository.BreadRepository;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class BreadService {
         Optional<Bread> bread = repository.getBreadByID(id);
         if (bread.isEmpty()) {
             log.info("Cant get bread with " + id + ". This ID dont exist");
-            return ResponseEntity.status(404).build();
+            throw new BreadNotFoundException("Bread not found");
         }
         log.info("Showing bread with id: " + id);
         return ResponseEntity.ok(bread.get());
@@ -33,9 +34,9 @@ public class BreadService {
 
     public ResponseEntity<List<Bread>> getBreadsByPrice(double price) {
         Optional<List<Bread>> breads = repository.getBreadsByPrice(price);
-        if (breads.isEmpty()) {
+        if (breads.map(List::size).orElse(0) == 0) {
             log.info("Breads with price: " + price + " dont exist");
-            ResponseEntity.status(404).build();
+            return ResponseEntity.status(404).build();
         }
         log.info("Showing breads with price: " + price + " .");
         return ResponseEntity.ok(breads.get());
