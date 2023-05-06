@@ -61,5 +61,6 @@ public class DataInitializer {
         bakeryRepository.createBakery(bakeryToAdd);
         bakeryRepository.addBreadToBakery(1L,2L);
         bakeryRepository.addBreadToBakery(1L,1L);
+        bakeryRepository.createBakery(bakeryToAdd);
     }
 }

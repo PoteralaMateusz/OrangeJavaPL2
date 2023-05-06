@@ -1,9 +1,19 @@
 package pl.sda.OrangeJavaPL2Spring.entity;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Embeddable
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@Table(name = "owners")
 public class Owner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String lastName;
     private int age;
@@ -14,7 +24,4 @@ public class Owner {
         this.age = age;
     }
 
-    public Owner() {
-
-    }
 }
