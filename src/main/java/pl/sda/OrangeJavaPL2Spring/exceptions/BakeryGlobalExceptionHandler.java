@@ -16,4 +16,18 @@ public class BakeryGlobalExceptionHandler {
         return exception.getMessage();
     }
 
+    @ResponseBody
+    @ExceptionHandler(AddressNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String addressNotFoundExceptionHandler(AddressNotFoundException exception){
+        return exception.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(BakeryNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String bakeryNotFoundExceptionHandler(BakeryNotFoundException exception){
+        return exception.getMessage();
+    }
+
 }

@@ -26,4 +26,10 @@ public class Bakery {
 
     @Embedded
     private Owner owner;
+
+    public Bakery(List<Bread> breadList, Address address, Owner owner) {
+        this.breadList = breadList;
+        this.address = address;
+        this.owner = owner;
+    }
 }

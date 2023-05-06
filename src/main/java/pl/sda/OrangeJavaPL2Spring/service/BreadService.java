@@ -23,13 +23,14 @@ public class BreadService {
     }
 
     public ResponseEntity<Bread> getBreadByID(int id) {
-        Optional<Bread> bread = repository.getBreadByID(id);
-        if (bread.isEmpty()) {
-            log.info("Cant get bread with " + id + ". This ID dont exist");
-            throw new BreadNotFoundException("Bread not found");
-        }
-        log.info("Showing bread with id: " + id);
-        return ResponseEntity.ok(bread.get());
+
+        return ResponseEntity
+                .status(200)
+                .body(repository.getBreadByID(id).orElseThrow(() -> {
+                    log.info("Cant get bread with " + id + ". This ID dont exist");
+                    return new BreadNotFoundException("Bread not found");
+
+                }));
     }
 
     public ResponseEntity<List<Bread>> getBreadsByPrice(double price) {

@@ -1,8 +1,10 @@
 package pl.sda.OrangeJavaPL2Spring.restapi;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.OrangeJavaPL2Spring.entity.Address;
+import pl.sda.OrangeJavaPL2Spring.exceptions.AddressNotFoundException;
 import pl.sda.OrangeJavaPL2Spring.repository.AddressRepository;
 
 import java.util.List;
@@ -18,8 +20,10 @@ public class AddressController {
     }
 
     @GetMapping("/address/{id}")
-    public Address getAddressByID(@PathVariable int id){
-        return repository.getAddressByID(id).orElse(null);
+    public ResponseEntity<Address> getAddressByID(@PathVariable int id){
+        return ResponseEntity
+                .status(200)
+                .body(repository.getAddressByID(id).orElseThrow(() -> new AddressNotFoundException("Address not found")));
     }
 
     @PostMapping("/address")
